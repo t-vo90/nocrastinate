@@ -1,25 +1,25 @@
 const User = require('./user')
 // const Action = require('./src/action')
 
-const thuan = new User('Thuan', '31', 'Mechanical Engineer', 'Germany')
-const ozan = new User('Ozan', '24', 'Electrical Engineer', 'Turkey')
+const thuan = new User('Thuan', 31, 'Mechanical Engineer', 'Germany')
+const ozan = new User('Ozan', 24, 'Electrical Engineer', 'Turkey')
 thuan.bio = ' On a Mission '
 
 const codingAction = thuan.createAction('Coding')
 const thuansGoals = new Goal(codingAction, 5)
-console.log(thuan, ozan)
 
-// const coyotivClassAction = thuan.createAction('Coyotiv Class')
+console.log(thuan, ozan)
+console.log(thuansGoals)
 
 console.log(thuan.profile)
 
-// thuan.startAction(coyotivClassAction)
+thuan.startAction(codingAction)
 
 // create action record
 // save it as active action
 // when stopping push it to actionRecords with the time
 
-// thuan.stopAction()
+thuan.stopAction()
 
 // ozan.approveTime(actionRecords)
 
