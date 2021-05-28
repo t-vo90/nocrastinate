@@ -1,6 +1,9 @@
+require('colors')
+
 module.exports = class User {
   constructor(name, age, occupation, location) {
-    ;(this.name = name), (this.age = age)
+    this.name = name
+    this.age = age
     this.bio = ''
 
     this.occupation = occupation
@@ -26,16 +29,16 @@ module.exports = class User {
   //
   // }
 
-  attendSession(session) {}
+  // attendSession(session) {}
 
   get profile() {
     return `
-        # Name Age
+        # Name ${this.name.red} Age ${this.age.red}
         # Bio
         # Top 5 Actions
        `
     /* ${this.action.map((actions) =>
-            return this.action.name)}*/
+            return this.action.name)} */
   }
 
   set profile(newValue) {
