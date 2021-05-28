@@ -14,6 +14,10 @@ module.exports = class User {
     this.actionRecords = []
   }
 
+  createAction(actionName) {
+    const action = new Action(actionName)
+    this.possibleActions.push(action)
+    return action
   createAction(action) {
     this.action = action
   }
