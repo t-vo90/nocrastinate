@@ -1,5 +1,6 @@
 const User = require('./user')
 // const Action = require('./src/action')
+const Goal = require('./goal')
 
 const thuan = new User('Thuan', 31, 'Mechanical Engineer', 'Germany')
 const ozan = new User('Ozan', 24, 'Electrical Engineer', 'Turkey')

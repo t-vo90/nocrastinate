@@ -1,4 +1,5 @@
 require('colors')
+const Action = require('./action')
 
 module.exports = class User {
   constructor(name, age, occupation, location) {
@@ -18,8 +19,6 @@ module.exports = class User {
     const action = new Action(actionName)
     this.possibleActions.push(action)
     return action
-  createAction(action) {
-    this.action = action
   }
 
   approveTime(time) {
