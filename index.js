@@ -11,9 +11,6 @@ const coyotivClassAction = thuan.createAction('Coyotiv Class')
 
 console.log(thuan.profile)
 
-function foo() {
-  return 3 ? 6 : 8 ? 6 : 1
-}
 // thuan.startAction(coyotivClassAction)
 
 // create action record
