@@ -1,6 +1,6 @@
 module.exports = class Goal {
   constructor(action, dailyHours) {
-    this.action = action
+    this.goal = action
     this.dailyHours = dailyHours
   }
 }

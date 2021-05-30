@@ -36,8 +36,8 @@ module.exports = class User {
 
   get profile() {
     return `
-        # Name ${this.name.red} Age ${this.age.red}
-        # Bio
+        # Name ${this.name.red} Age ${this.age}
+        # Bio ${this.bio.america}
         # Top 5 Actions
        `
     /* ${this.action.map((actions) =>
