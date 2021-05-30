@@ -7,18 +7,22 @@ thuan.bio = ' On a Mission '
 
 const codingAction = thuan.createAction('Coding')
 const thuansGoals = new Goal(codingAction, 5)
+const sportsAction = thuan.createAction('Gym')
+const thuansSportsGoals = new Goal(sportsAction, 1)
 
 console.log(thuansGoals)
+console.log(thuansSportsGoals)
+console.log(thuan.possibleActions)
 
 console.log(thuan.profile)
 
-thuan.startAction(codingAction)
+// thuan.startAction(codingAction)
 
 // create action record
 // save it as active action
 // when stopping push it to actionRecords with the time
 
-thuan.stopAction()
+// thuan.stopAction()
 
 // ozan.approveTime(actionRecords)
 
