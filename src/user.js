@@ -21,10 +21,10 @@ module.exports = class User {
     return action
   }
 
-  approveTime(time) {
-    this.approvedTime.push(time)
-    time.approvedBy.push(this)
-  }
+  // approveTime(time) {
+  //   this.approvedTime.push(time)
+  //   time.approvedBy.push(this)
+  // }
 
   // createSession(session,sessionTime) {
   // session.Session.push(this)

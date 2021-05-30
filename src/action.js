@@ -3,4 +3,3 @@ module.exports = class Action {
     this.action = parameter
   }
 }
-module.exports = class Action {}
