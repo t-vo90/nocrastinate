@@ -8,7 +8,6 @@ thuan.bio = ' On a Mission '
 const codingAction = thuan.createAction('Coding')
 const thuansGoals = new Goal(codingAction, 5)
 
-console.log(thuan, ozan)
 console.log(thuansGoals)
 
 console.log(thuan.profile)
