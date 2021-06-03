@@ -1,0 +1,18 @@
+@startuml State of NoCrastinate
+
+' state "L0 Character" as State1
+
+[*] -> Action1 : Starts
+Action1 --> ActiveAction: Puts itself into
+ActiveAction --> ActionRecord: Puts iteself into
+
+state ActionRecord {
+    ActiveAction: exists
+    [*] --> TestState
+    TestState --> Active: Yes
+}
+ActionRecord --> ActionRecord: while Active
+
+ActionRecord --> [*]: Stop Action
+
+@enduml
