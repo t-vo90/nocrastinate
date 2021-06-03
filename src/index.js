@@ -1,32 +1,46 @@
 const User = require('./user')
-const Goal = require('./goal')
+// const Goal = require('./goal')
 
 const thuan = new User('Thuan', 31, 'Mechanical Engineer', 'Germany')
-const ozan = new User('Ozan', 24, 'Electrical Engineer', 'Turkey')
 thuan.bio = ' On a Mission '
+const ozan = new User('Ozan', 24, 'Electrical Engineer', 'Turkey')
+ozan.bio = ' I am on my Way '
 
 const codingAction = thuan.createAction('Coding')
-const thuansGoals = new Goal(codingAction, 5)
-const sportsAction = thuan.createAction('Gym')
-const thuansSportsGoals = new Goal(sportsAction, 1)
+const gymAction = thuan.createAction('Exercising')
 
-console.log(thuansGoals)
-console.log(thuansSportsGoals)
-console.log(thuan.possibleActions)
+thuan.startAction(codingAction)
+thuan.stopAction(5)
 
-console.log(thuan.profile)
+thuan.startAction(gymAction)
+thuan.stopAction(1)
 
-// thuan.startAction(codingAction)
+thuan.startAction(gymAction)
+thuan.stopAction(1)
 
-// create action record
-// save it as active action
-// when stopping push it to actionRecords with the time
+console.log(thuan)
 
-// thuan.stopAction()
+const test = [1]
+console.log(test)
+console.log(test.length)
 
-// ozan.approveTime(actionRecords)
+/*  User Story - Step by Step -
+    Create a user
+        -> Name, Age , Occupation
+    User creates Action
+        -> Action creates Action record
+        -> Action creates an Array of possible Actions for future Use
+    User notes a Goal
+        -> Specifies which Action should be done for how long
+    User Starts Action
+        -> Saves it as Active Action
+        -> Pushes the Action into Action Record (Action + Time of Beginning)
+    User stopps Action
+        -> Pushes Stop Time into Action Record
+        -> Action Record calculates Time spent on specific Action
+    User creates a Session
+    User Attend Action
+    SessionAttend Unlocks the Ability of User to approve their Time spent together
 
-// thuan.createSession('Study together', date(now))
-// ozan.attendSession()
-
-// console.log(thuan, thuan.timetrack[0].approvedBy)
+    --- Maybe change Action to Activity
+*/
