@@ -53,6 +53,7 @@ module.exports = class User {
     this.activeAction = null
   }
 
+  checkDailyReport() {}
 
   get profile() {
     return `
