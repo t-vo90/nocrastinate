@@ -1,5 +1,6 @@
 require('colors')
 const Action = require('./action')
+const ActionRecord = require('./actionrecord')
 
 module.exports = class User {
   constructor(name, age, occupation, location) {
