@@ -1,0 +1,30 @@
+@startuml NoCrastinate Sequence
+
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Third Class" as C
+
+User --> A: Do some Work
+activate A
+A --> B: Create Something
+activate B
+
+B --> C: DO IT NOW
+activate C
+
+...elapsed time...
+
+
+C --> B: Doneso
+deactivate B
+
+...elapsed time...
+
+B --> A: Created !
+deactivate A
+
+A--> A: Recheck the Work.
+
+A--> User: Done !
+@enduml
