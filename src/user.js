@@ -24,12 +24,12 @@ module.exports = class User {
     return action
   }
 
+  startAction(action) {
+    this.activeAction = action.name
 
-  // createSession(session,sessionTime) {
-  // session.Session.push(this)
-  // sessionTime.Session.puhs(this)
-  //
-  // }
+    const indexOfActiveAction = this.actionRecords.indexOf(
+      this.actionRecords.find(element => element.action === this.activeAction)
+    )
 
   // attendSession(session) {}
 
