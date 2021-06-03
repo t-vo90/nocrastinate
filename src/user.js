@@ -38,6 +38,7 @@ module.exports = class User {
 
     console.log(`${action.name} has been started`)
   }
+
   stopAction(testTime) {
     const indexOfActiveAction = this.actionRecords.indexOf(
       this.actionRecords.find(element => element.action === this.activeAction)
