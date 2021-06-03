@@ -5,6 +5,7 @@
     "class-methods-use-this": "off",
     "no-console": "off"
   },
+  "parser": "babel-eslint",
   "settings": {
     "react": {
       "version": "latest"
