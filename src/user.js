@@ -31,6 +31,21 @@ module.exports = class User {
       this.actionRecords.find(element => element.action === this.activeAction)
     )
 
+  stopAction(testTime) {
+    const indexOfActiveAction = this.actionRecords.indexOf(
+      this.actionRecords.find(element => element.action === this.activeAction)
+    )
+    this.actionRecords[indexOfActiveAction].inProgress = false
+
+    const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+    this.actionRecords[indexOfActiveAction].stopTime = stoppingTime
+
+    console.log(`${this.activeAction} has been stopped`)
+    const productiveTime = this.actionRecords[indexOfActiveAction].calculateProductiveTimeOfOneAction()
+    console.log(`You have been ${this.activeAction} for ${productiveTime} hour/s`)
+    this.activeAction = null
+  }
+
 
   get profile() {
     return `
