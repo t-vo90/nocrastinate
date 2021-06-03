@@ -34,15 +34,15 @@ module.exports = class User {
 
   get profile() {
     return `
-        # Name ${this.name.red} Age ${this.age}
-        # Bio ${this.bio.america}
-        # Top 5 Actions
+    _____________________________________________
+    # Name: ${this.name.red} Age: ${this.age}
+    _____________________________________________
+    # Bio: ${this.bio.red}
+    _____________________________________________
+    # Top 5 Actions
+    _____________________________________________
        `
     /* ${this.action.map((actions) =>
             return this.action.name)} */
-  }
-
-  set profile(newValue) {
-    throw new Error(' Cannot be overwritten')
   }
 }
