@@ -31,7 +31,6 @@ module.exports = class User {
       this.actionRecords.find(element => element.action === this.activeAction)
     )
 
-  // attendSession(session) {}
 
   get profile() {
     return `
