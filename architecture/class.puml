@@ -1,0 +1,53 @@
+@startuml NoCrastinate
+
+skinparam Shadowing false
+skinparam Monochrome true
+' skinparam PackageFontStyle Rectangle
+
+class User  {
+    name: String
+    age: Number
+    occupation: string
+    location: string
+    goals: [Goal]
+
+    activeAction: ActionRecord
+    possibleActions: [Action]
+    actionRecords: [ActionRecord]
+
+    createAction(actionName)
+    startAction(actionName)
+}
+
+class Action {
+    name: String
+}
+
+class ActionRecord {
+    action: Action
+    startTime: Date
+    stopTime: Date
+    inProgress: Boolean
+}
+class Goal {
+    goal: Action
+    dailyHours: Number
+}
+
+class GoalManager{
+    checkForAchievements(goal,actionRecord)
+}
+
+User "1" o-> "0...*" Action : Creates..
+User ---> Action: Start/stop
+User *-> ActionRecord
+
+Action <-- ActionRecord : keeps an Action
+
+
+User *----> Goal : Defines
+GoalManager -> ActionRecord
+GoalManager -> Goal
+
+
+@enduml
