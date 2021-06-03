@@ -6,10 +6,9 @@ module.exports = class User {
   constructor(name, age, occupation, location) {
     this.name = name
     this.age = age
-    this.bio = ''
-
     this.occupation = occupation
     this.location = location
+    this.bio = ''
 
     this.activeAction = null
     this.possibleActions = []
