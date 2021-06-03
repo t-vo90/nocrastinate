@@ -1,0 +1,40 @@
+@startuml Use-Case NoCrastinate
+
+left to right direction
+
+skinparam Shadowing false
+skinparam Monochrome true
+skinparam PackageFontStyle Rectangle
+
+actor "User" as user
+actor "User2" as user2
+
+package "Time Tracking" {
+    usecase "Create Action" as CreateAction
+    usecase "Create Goal" as CreateGoal
+    usecase "Start Action" as StartAction
+}
+
+package "Sessions" {
+    usecase "Create Session" as CreateSession
+    usecase "Attend Session" as AttendSession
+}
+
+package "Messaging" {
+
+}
+package "Reporting" {
+    usecase "See Reports" as Report
+
+}
+
+user --> CreateAction
+user --> CreateGoal
+user --> StartAction
+user --> CreateSession
+user --> AttendSession
+
+
+user2 --> AttendSession
+
+@enduml
