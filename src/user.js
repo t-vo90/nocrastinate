@@ -31,6 +31,13 @@ module.exports = class User {
       this.actionRecords.find(element => element.action === this.activeAction)
     )
 
+    this.actionRecords[indexOfActiveAction].inProgress = true
+
+    const startingTime = new Date(Date.now())
+    this.actionRecords[indexOfActiveAction].startTime = startingTime
+
+    console.log(`${action.name} has been started`)
+  }
   stopAction(testTime) {
     const indexOfActiveAction = this.actionRecords.indexOf(
       this.actionRecords.find(element => element.action === this.activeAction)
