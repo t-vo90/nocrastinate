@@ -1,0 +1,24 @@
+@startuml Activity of NoCrastinate
+
+start
+
+:User creates Action;
+:note in ActionRecord;
+:create Goal;
+:User starts Action;
+:note Start Time in ActionRecord;
+:User stops Action;
+:note Stop Time in ActionRecord;
+:return Active Action Time;
+if (goal met?) then (yes)
+    :congrat;
+else(no)
+repeat
+    :get better;
+    repeat while (not reached)
+    :congrat;
+endif
+stop
+
+
+@enduml
