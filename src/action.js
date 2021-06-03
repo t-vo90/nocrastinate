@@ -1,5 +1,5 @@
 module.exports = class Action {
-  constructor(parameter) {
-    this.action = parameter
+  constructor(action) {
+    this.name = action
   }
 }
