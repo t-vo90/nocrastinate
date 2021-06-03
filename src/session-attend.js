@@ -1,4 +1,0 @@
-// class sessionAttend {
-//     constructor(user) {
-//     }
-// }
