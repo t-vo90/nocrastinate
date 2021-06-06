@@ -1,4 +1,3 @@
-require('colors')
 const Action = require('./action')
 const ActionRecord = require('./actionrecord')
 
@@ -59,9 +58,9 @@ module.exports = class User {
   get profile() {
     return `
     _____________________________________________
-    # Name: ${this.name.red} Age: ${this.age}
+    # Name: ${this.name} Age: ${this.age}
     _____________________________________________
-    # Bio: ${this.bio.red}
+    # Bio: ${this.bio}
     _____________________________________________
     # Top 5 Actions
     _____________________________________________
