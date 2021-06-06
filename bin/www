@@ -7,7 +7,7 @@
 
 const debug = require('debug')('be103:server')
 const http = require('http')
-const app = require('../app')
+const app = require('../src/app')
 
 /**
  * Get port from environment and store in Express.
