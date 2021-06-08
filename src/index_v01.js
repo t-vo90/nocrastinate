@@ -1,4 +1,4 @@
-const User = require('./user')
+const User = require('./models/user')
 // const Goal = require('./goal')
 
 const thuan = new User('Thuan', 31, 'Mechanical Engineer', 'Germany')
