@@ -5,9 +5,13 @@
  * Module dependencies.
  */
 
-const debug = require('debug')('be103:server')
+const debug = require('debug')('nocrastinate:server')
 const http = require('http')
+const livereload = require('livereload')
 const app = require('../src/app')
+
+const liveServer = livereload.createServer()
+liveServer.watch(`${__dirname}/bin/www`)
 
 /**
  * Get port from environment and store in Express.
