@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const ActionSchema = new mongoose.Schema({
-  Action: String,
+  name: String,
 })
 
 module.exports = mongoose.model('Action', ActionSchema)
