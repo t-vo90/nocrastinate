@@ -1,29 +1,44 @@
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 const Action = require('./action')
 const ActionRecord = require('./actionrecord')
 
-module.exports = class User {
-  constructor(name, age, occupation, location) {
-    this.name = name
-    this.age = age
-    this.occupation = occupation
-    this.location = location
-    this.bio = ''
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  age: { type: Number, required: true },
+  occupation: String,
+  location: String,
+  bio: String,
 
-    this.activeAction = null
-    this.possibleActions = []
-    this.actionRecords = []
-  }
+  activeAction: String,
+  possibleActions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Action',
+      autopopulate: true,
+    },
+  ],
+  actionRecords: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Action',
+      autopopulate: true,
+    },
+  ],
+})
 
-  createAction(actionName) {
+class User {
+  async createAction(actionName) {
     const action = new Action(actionName)
     const record = new ActionRecord(actionName)
 
     this.possibleActions.push(action)
     this.actionRecords.push(record)
+    await this.save()
     return action
   }
 
-  startAction(action) {
+  async startAction(action) {
     this.activeAction = action.name
 
     const indexOfActiveAction = this.actionRecords.indexOf(
@@ -34,11 +49,11 @@ module.exports = class User {
 
     const startingTime = new Date(Date.now())
     this.actionRecords[indexOfActiveAction].startTime = startingTime
-
+    await this.save()
     console.log(`${action.name} has been started`)
   }
 
-  stopAction(testTime) {
+  async stopAction(testTime) {
     const indexOfActiveAction = this.actionRecords.indexOf(
       this.actionRecords.find(element => element.action === this.activeAction)
     )
@@ -51,6 +66,7 @@ module.exports = class User {
     const productiveTime = this.actionRecords[indexOfActiveAction].calculateProductiveTimeOfOneAction()
     console.log(`You have been ${this.activeAction} for ${productiveTime} hour/s`)
     this.activeAction = null
+    await this.save()
   }
 
   checkDailyReport() {}
@@ -64,8 +80,12 @@ module.exports = class User {
     _____________________________________________
     # Top 5 Actions
     _____________________________________________
-       `
+    `
     /* ${this.action.map((actions) =>
-            return this.action.name)} */
+      return this.action.name)} */
   }
 }
+
+userSchema.loadClass(User)
+userSchema.plugin(autopopulate)
+module.exports = mongoose.model('User', userSchema)
