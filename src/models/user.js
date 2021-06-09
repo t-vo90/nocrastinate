@@ -42,17 +42,13 @@ class User {
 
   async startAction(action) {
     const record = await ActionRecord.create({ action })
-    this.activeAction = record
-
-    const indexOfActiveAction = this.actionRecords.indexOf(
-      this.actionRecords.find(element => element.action === this.activeAction)
-    )
+    this.activeActionRecord = record
 
     this.actionRecords.push(record)
-    this.actionRecords[indexOfActiveAction].inProgress = true
+    this.actionRecords[action].inProgress = true
 
     const startingTime = new Date(Date.now())
-    this.actionRecords[indexOfActiveAction].startTime = startingTime
+    this.actionRecords[action].startTime = startingTime
     await this.save()
     console.log(`${action.name} has been started`)
   }
