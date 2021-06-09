@@ -1,19 +1,23 @@
 const mongoose = require('mongoose')
 
 const ActionRecordSchema = new mongoose.Schema({
-  action: String,
-  startTime: String,
-  stopTime: String,
+  action: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Action',
+    autopopulate: true,
+  },
+  startTime: { type: Date, default: Date.now },
+  stopTime: Date,
   inProgress: Boolean,
-  productiveTime: Number,
+  // productiveTime: Number,
 
-  goalList: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Action',
-      autopopulate: true,
-    },
-  ],
+  // goalList: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Action',
+  //     autopopulate: true,
+  //   },
+  // ],
 })
 
 class ActionRecord {
