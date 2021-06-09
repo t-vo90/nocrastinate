@@ -54,17 +54,16 @@ class User {
   }
 
   async stopAction(testTime) {
-    const indexOfActiveAction = this.actionRecords.indexOf(
-      this.actionRecords.find(element => element.action === this.activeAction)
-    )
-    this.actionRecords[indexOfActiveAction].inProgress = false
+    const activeAction = await this.find(this.activeAction)
+    this.actionRecords[activeAction].inProgress = false
 
     const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
-    this.actionRecords[indexOfActiveAction].stopTime = stoppingTime
+    this.actionRecords[activeAction].stopTime = stoppingTime
 
-    console.log(`${this.activeAction} has been stopped`)
-    const productiveTime = this.actionRecords[indexOfActiveAction].calculateProductiveTimeOfOneAction()
-    console.log(`You have been ${this.activeAction} for ${productiveTime} hour/s`)
+    console.log(`${activeAction} has been stopped`)
+
+    const productiveTime = this.actionRecords[activeAction].calculateProductiveTimeOfOneAction()
+    console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
     this.activeAction = null
     await this.save()
   }
