@@ -1,16 +1,26 @@
-module.exports = class ActionRecord {
-  constructor(action) {
-    this.action = action
-    this.startTime = null
-    this.stopTime = null
-    this.inProgress = false
-    this.productiveTime = null
-    this.goalList = []
-  }
+const mongoose = require('mongoose')
 
-  calculateProductiveTimeOfOneAction() {
+const ActionRecordSchema = new mongoose.Schema({
+  action: String,
+  startTime: String,
+  stopTime: String,
+  inProgress: Boolean,
+  productiveTime: Number,
+
+  goalList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Action',
+      autopopulate: true,
+    },
+  ],
+})
+
+class ActionRecord {
+  async calculateProductiveTimeOfOneAction() {
     const time = Math.floor((this.stopTime - this.startTime) / 60 / 60 / 1000)
     this.productiveTime = time
+    await this.save()
     return time
   }
 
@@ -20,3 +30,5 @@ module.exports = class ActionRecord {
   //   });
   // }
 }
+ActionRecordSchema.loadClass(ActionRecord)
+module.exports = mongoose.model('ActionRecord', ActionRecordSchema)
