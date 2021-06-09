@@ -9,15 +9,7 @@ const ActionRecordSchema = new mongoose.Schema({
   startTime: { type: Date, default: Date.now },
   stopTime: Date,
   inProgress: Boolean,
-  // productiveTime: Number,
-
-  // goalList: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: 'Action',
-  //     autopopulate: true,
-  //   },
-  // ],
+  productiveTime: Number,
 })
 
 class ActionRecord {
