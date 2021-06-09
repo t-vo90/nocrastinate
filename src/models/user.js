@@ -10,7 +10,11 @@ const userSchema = new mongoose.Schema({
   location: String,
   bio: String,
 
-  activeAction: String,
+  activeAction: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ActionRecord',
+    autopopulate: true,
+  },
   possibleActions: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -21,7 +25,7 @@ const userSchema = new mongoose.Schema({
   actionRecords: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Action',
+      ref: 'ActionRecord',
       autopopulate: true,
     },
   ],
@@ -29,22 +33,22 @@ const userSchema = new mongoose.Schema({
 
 class User {
   async createAction(actionName) {
-    const action = new Action(actionName)
-    const record = new ActionRecord(actionName)
+    const action = await Action.create({ name: actionName })
 
     this.possibleActions.push(action)
-    this.actionRecords.push(record)
     await this.save()
     return action
   }
 
   async startAction(action) {
-    this.activeAction = action.name
+    const record = await ActionRecord.create({ action })
+    this.activeAction = record
 
     const indexOfActiveAction = this.actionRecords.indexOf(
       this.actionRecords.find(element => element.action === this.activeAction)
     )
 
+    this.actionRecords.push(record)
     this.actionRecords[indexOfActiveAction].inProgress = true
 
     const startingTime = new Date(Date.now())
