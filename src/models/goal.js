@@ -1,6 +1,8 @@
-module.exports = class Goal {
-  constructor(action, dailyHours) {
-    this.goal = action
-    this.dailyHours = dailyHours
-  }
-}
+const mongoose = require('mongoose')
+
+const GoalSchema = new mongoose.Schema({
+  name: String,
+  goalHours: Number,
+})
+
+module.exports = mongoose.model('Goals', GoalSchema)
