@@ -9,7 +9,6 @@ require('mongoose')
 const debug = require('debug')('nocrastinate:server')
 const http = require('http')
 const livereload = require('livereload')
-// const databaseConnection = require('../src/database-connection')
 const app = require('../src/app')
 
 const liveServer = livereload.createServer()
