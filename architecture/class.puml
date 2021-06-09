@@ -9,6 +9,7 @@ class User  {
     age: Number
     occupation: string
     location: string
+    bio: string
     goals: [Goal]
 
     activeActionRecord: ActionRecord
@@ -18,6 +19,7 @@ class User  {
     createAction(actionName)
     startAction(action)
     stopAction(action)
+
 }
 
 class Action {
@@ -29,6 +31,9 @@ class ActionRecord {
     startTime: Date
     stopTime: Date
     inProgress: Boolean
+    productiveTime: Number
+
+    calculateProductiveTime(stopTime)
 }
 class Goal {
     goal: Action
