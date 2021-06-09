@@ -11,12 +11,13 @@ class User  {
     location: string
     goals: [Goal]
 
-    activeAction: ActionRecord
+    activeActionRecord: ActionRecord
     possibleActions: [Action]
     actionRecords: [ActionRecord]
 
     createAction(actionName)
-    startAction(actionName)
+    startAction(action)
+    stopAction(action)
 }
 
 class Action {
