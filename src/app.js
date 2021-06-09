@@ -2,16 +2,18 @@
 /* eslint-disable func-names */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-var */
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+const createError = require('http-errors')
+const path = require('path')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
-var indexRouter = require('./routes/index')
-var usersRouter = require('./routes/users')
+require('./database-connection')
 
-var app = express()
+const indexRouter = require('./routes/index')
+const usersRouter = require('./routes/users')
+
+const app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
