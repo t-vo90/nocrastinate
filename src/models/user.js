@@ -35,9 +35,11 @@ class User {
   async createAction(actionName) {
     const action = await Action.create({ name: actionName })
     this.possibleActions.push(action)
-    const res = await Action.findById(action._id)
-    console.log(`Possible Action ${this.possibleActions.find(a => a.name)}`)
-    console.log(`Possible Action ${res.name}`)
+    console.log('Action', action)
+
+    // const res = await Action.findById(action._id)
+    // console.log(`Possible Action 1 ${this.possibleActions.map(a => a.name)}`)
+    // console.log(`Possible Action 2 ${res.name}`)
     await this.save()
     return action
   }
