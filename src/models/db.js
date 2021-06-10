@@ -17,14 +17,16 @@ async function initalizeProject() {
   // ozan.bio = ' I am on my Way '
   //
   const codingAction = await thuan.createAction('Coding')
-  const gymAction = await thuan.createAction('Exercising')
+  // const gymAction = await thuan.createAction('Exercising')
   //
   await thuan.startAction(codingAction)
-  // thuan.stopAction(5)
+  await thuan.stopAction()
 
-  await thuan.startAction(gymAction)
+  await console.log('Thuan is doing ', thuan.activeActionRecord.action)
+  // await thuan.startAction(gymAction)
 
-  console.log('test', thuan.possibleActions.find(a => a.name == 'Codingx')?.name)
+  // console.log('test', thuan.possibleActions.map(a => a.name == 'Coding')?.name)
+  // await console.log(thuan.activeActionRecord.action.name)
 
   // thuan.stopAction(1)
 
