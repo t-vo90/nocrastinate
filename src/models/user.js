@@ -40,6 +40,7 @@ class User {
     // const res = await Action.findById(action._id)
     // console.log(`Possible Action 1 ${this.possibleActions.map(a => a.name)}`)
     // console.log(`Possible Action 2 ${res.name}`)
+
     await this.save()
     return action
   }
@@ -57,21 +58,20 @@ class User {
     await this.save()
   }
 
-  // async stopAction(testTime) {
-  //   const { activeAction } = this
-  //   console.log(activeAction)
-  //   this.actionRecords.inProgress = false
+  async stopAction() {
+    const activeAction = await this.activeActionRecord.action
+    await console.log('test', activeAction)
 
-  //   const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
-  //   this.actionRecords.stopTime = stoppingTime
+    //   const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+    //   this.actionRecords.stopTime = stoppingTime
 
-  //   console.log(`${activeAction} has been stopped`)
-  // this.activeAction = null
-  // await this.save()
+    //   console.log(`${activeAction} has been stopped`)
+    // this.activeAction = null
+    // await this.save()
 
-  // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
-  // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
-  // }
+    // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
+    // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
+  }
 
   checkDailyReport() {}
 
