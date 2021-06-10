@@ -8,7 +8,6 @@ const ActionRecordSchema = new mongoose.Schema({
   },
   startTime: { type: Date, default: Date.now },
   stopTime: Date,
-  inProgress: Boolean,
   productiveTime: Number,
 })
 
