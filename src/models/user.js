@@ -47,12 +47,11 @@ class User {
   async startAction(action) {
     const record = await ActionRecord.create({ action })
     this.activeActionRecord = record
-    console.log(this.activeActionRecord.action.name)
+    // console.log(this.activeActionRecord.action.name)
 
-    //   this.actionRecords.push(record)
-    //   this.actionRecords.inProgress = true
+    this.actionRecords.push(record)
 
-    //   console.log(`${record} has been started`)
+    console.log(`${record.action.name} has been started`)
     //   const startingTime = new Date(Date.now())
     //   this.actionRecords.startTime = startingTime
     await this.save()
