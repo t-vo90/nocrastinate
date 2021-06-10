@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   location: String,
   bio: String,
 
-  activeAction: {
+  activeActionRecord: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ActionRecord',
     autopopulate: true,
@@ -34,8 +34,10 @@ const userSchema = new mongoose.Schema({
 class User {
   async createAction(actionName) {
     const action = await Action.create({ name: actionName })
-
     this.possibleActions.push(action)
+    const res = await Action.findById(action._id)
+    console.log(`Possible Action ${this.possibleActions.find(a => a.name)}`)
+    console.log(`Possible Action ${res.name}`)
     await this.save()
     return action
   }
@@ -43,30 +45,32 @@ class User {
   async startAction(action) {
     const record = await ActionRecord.create({ action })
     this.activeActionRecord = record
+    console.log(this.activeActionRecord.action.name)
 
-    this.actionRecords.push(record)
-    this.actionRecords[action].inProgress = true
+    //   this.actionRecords.push(record)
+    //   this.actionRecords.inProgress = true
 
-    const startingTime = new Date(Date.now())
-    this.actionRecords[action].startTime = startingTime
-    await this.save()
-    console.log(`${action.name} has been started`)
-  }
-
-  async stopAction(testTime) {
-    const activeAction = await this.find(this.activeAction)
-    this.actionRecords[activeAction].inProgress = false
-
-    const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
-    this.actionRecords[activeAction].stopTime = stoppingTime
-
-    console.log(`${activeAction} has been stopped`)
-
-    const productiveTime = this.actionRecords[activeAction].calculateProductiveTimeOfOneAction()
-    console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
-    this.activeAction = null
+    //   console.log(`${record} has been started`)
+    //   const startingTime = new Date(Date.now())
+    //   this.actionRecords.startTime = startingTime
     await this.save()
   }
+
+  // async stopAction(testTime) {
+  //   const { activeAction } = this
+  //   console.log(activeAction)
+  //   this.actionRecords.inProgress = false
+
+  //   const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+  //   this.actionRecords.stopTime = stoppingTime
+
+  //   console.log(`${activeAction} has been stopped`)
+  // this.activeAction = null
+  // await this.save()
+
+  // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
+  // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
+  // }
 
   checkDailyReport() {}
 

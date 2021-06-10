@@ -4,7 +4,7 @@ const username = process.env.MONGODB_USERNAME
 const password = process.env.MONGODB_PASSWORD
 const dbName = process.env.MONGODB_DATABASE
 
-mongoose.set('debug', true)
+// mongoose.set('debug', true)
 
 mongoose
   .connect(`mongodb+srv://${username}:${password}@cluster0.zh8uj.mongodb.net/${dbName}?retryWrites=true&w=majority`, {
