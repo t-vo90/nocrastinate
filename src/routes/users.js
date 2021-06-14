@@ -1,39 +1,46 @@
 /* eslint-disable no-unused-vars */
-const { query } = require('express')
 const express = require('express')
 
 const router = express.Router()
-const users = require('../models/db')
+
+const User = require('../models/user')
+const Action = require('../models/action')
+const ActionRecord = require('../models/actionrecord')
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  // router.get('/', async (req, res, next) => {
-  // const users = await User.find()
-  let result = users
-  // let query = {}
+router.get('/', async (req, res, next) => {
+  const query = {}
+
   if (req.query.name) {
-    // query.name = req.query.name
-    result = users.filter(user => user.name.toLowerCase() === req.query.name.toLowerCase())
+    query.name = req.query.name
   }
 
   if (req.query.age) {
-    // query.age = req.query.age
-    result = users.filter(user => user.age === req.query.age)
+    query.age = req.query.age
   }
 
-  res.send(result)
-  // res.send(await User.find())
+  res.send(await User.find(query))
 })
-// router.get('/initialize', async (req, res) => {
-//   await initalizeProject()
-//   console.log()
-//   res.sendStatus(200)
-// })
-router.get('/:userId', (req, res, next) => {
-  // router.get('/:userId', async (req, res, next) => {
-  // const user = await User.findById(req.params.userID)
-  const user = users[req.params.userId]
-  if (user) res.send(user)
+router.get('/initialize', async (req, res) => {
+  const thuan = await User.create({ name: 'Thuan', age: 31, occupation: 'Mechanical Engineer', location: 'Germany' })
+  const ozan = await User.create({ name: 'Ozan', age: 24, occupation: 'Electrical Engineer', location: 'Turkey' })
+
+  const codingAction = await thuan.createAction('Coding')
+  const gymAction = await thuan.createAction('Exercising')
+
+  await thuan.startAction(codingAction)
+  // thuan.stopAction(5)
+
+  await thuan.startAction(gymAction)
+
+  console.log(thuan)
+  res.sendStatus(200)
+})
+
+router.get('/:userId', async (req, res) => {
+  const user = await User.findById(req.params.userId)
+  console.log(user)
+  if (user) res.render('user', { user })
   else res.sendStatus(404)
 })
 
