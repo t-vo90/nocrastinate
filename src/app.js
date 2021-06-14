@@ -15,6 +15,15 @@ const usersRouter = require('./routes/users')
 
 const app = express()
 
+if (app.get('env') == 'development') {
+  /* eslint-disable-next-line */
+  app.use(require('connect-livereload')())
+  /* eslint-disable-next-line */
+  require('livereload')
+    .createServer({ extraExts: ['pug'] })
+    .watch([`${__dirname}/public`, `${__dirname}/views`])
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -35,7 +44,7 @@ app.use(function (req, res, next) {
 
 // error handler
 // eslint-disable-next-line no-unused-vars
-app.use(function (err, req, res, next) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
@@ -44,5 +53,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+console.log('Creator what is my job')
 
 module.exports = app

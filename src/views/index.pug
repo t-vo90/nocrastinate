@@ -2,5 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  h2 #{thuan.name} (#{thuan.age})
+  p Welcome to new best awesome better #{title}
+  h2 All users
+  each user in users
+    h2 #{user.name} (#{user.age})
