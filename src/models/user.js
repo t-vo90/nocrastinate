@@ -35,12 +35,9 @@ class User {
   async createAction(actionName) {
     const action = await Action.create({ name: actionName })
     this.possibleActions.push(action)
-    console.log('Action', action)
-
     // const res = await Action.findById(action._id)
-    // console.log(`Possible Action 1 ${this.possibleActions.map(a => a.name)}`)
-    // console.log(`Possible Action 2 ${res.name}`)
-
+    console.log(`Possible Action ${this.possibleActions.find(a => a.name)}`)
+    // console.log(`Possible Action ${res.name}`)
     await this.save()
     return action
   }
@@ -48,7 +45,9 @@ class User {
   async startAction(action) {
     const record = await ActionRecord.create({ action })
     this.activeActionRecord = record
-    // console.log(this.activeActionRecord.action.name)
+    console.log('Active Action Record', this.activeActionRecord)
+    console.log('Active Action', this.activeActionRecord.action)
+    console.log('Active Action Name', this.activeActionRecord.action.name)
 
     this.actionRecords.push(record)
 
@@ -92,4 +91,5 @@ class User {
 
 userSchema.loadClass(User)
 userSchema.plugin(autopopulate)
+
 module.exports = mongoose.model('User', userSchema)
