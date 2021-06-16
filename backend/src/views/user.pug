@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to new
-  h1 #{user.name} (#{user.age})
-  //- p Bio: #{user.bio}
+  p Welcome
+    h2 #{user.name} (#{user.age})
+  p Bio: #{user.bio}
   //- h2 Photos (#{user.photos.length})
 //-
   //- each photo in user.photos
