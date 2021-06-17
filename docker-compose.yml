@@ -1,9 +1,19 @@
-version: '3'
+version: "3"
 services:
-  app:
-    image: nocrastinate
+  frontend:
+    image: frontend
     build:
-      context: .
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+  backend:
+    image: backend
+    build:
+      context: backend
       dockerfile: Dockerfile
     environment:
       # - MONGODB_USERNAME
@@ -15,7 +25,8 @@ services:
       - 3000:3000
       - 35729:35729
     volumes:
-      - ./src:/app/src
+      - ./backend/src:/app/src
+      - ./backend/src/test:/app/test
   mongo:
     image: mongo
     ports:

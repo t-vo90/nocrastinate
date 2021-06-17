@@ -1,6 +1,6 @@
 {
   "name": "nocrastinate",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "private": true,
   "description": "Coyotiv Project: Productivity Tracking",
   "main": "bin/www",
@@ -27,14 +27,18 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^6.0.0",
+    "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
-    "pretty-quick": "^3.1.0"
+    "pretty-quick": "^3.1.0",
+    "supertest": "^6.1.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "lint-staged"
+    "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
+    "test-coverage": "jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
+    "lint": "lint-staged",
+    "lint-all": "pretty-quick && eslint"
   },
   "husky": {
     "hooks": {
