@@ -35,25 +35,17 @@ class User {
   async createAction(actionName) {
     const action = await Action.create({ name: actionName })
     this.possibleActions.push(action)
-    // const res = await Action.findById(action._id)
-    console.log(`Possible Action ${this.possibleActions.find(a => a.name)}`)
-    // console.log(`Possible Action ${res.name}`)
     await this.save()
-    return action
   }
 
   async startAction(action) {
     const record = await ActionRecord.create({ action })
     this.activeActionRecord = record
-    console.log('Active Action Record', this.activeActionRecord)
-    console.log('Active Action', this.activeActionRecord.action)
-    console.log('Active Action Name', this.activeActionRecord.action.name)
-
     this.actionRecords.push(record)
 
     console.log(`${record.action.name} has been started`)
-    //   const startingTime = new Date(Date.now())
-    //   this.actionRecords.startTime = startingTime
+    const startingTime = new Date(Date.now())
+    this.actionRecords.startTime = startingTime
     await this.save()
   }
 
