@@ -54,6 +54,6 @@ app.use((err, req, res) => {
   res.render('error')
 })
 
-console.log('Creator what is my job')
+console.log('Creator what is my Purpose')
 
 module.exports = app
