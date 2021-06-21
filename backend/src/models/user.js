@@ -36,6 +36,7 @@ class User {
     const action = await Action.create({ name: actionName })
     this.possibleActions.push(action)
     await this.save()
+    return action
   }
 
   async startAction(action) {
@@ -49,12 +50,17 @@ class User {
     await this.save()
   }
 
-  async stopAction() {
-    const activeAction = await this.activeActionRecord.action
-    await console.log('test', activeAction)
+  async stopAction(testTime) {
+    const activeAction = await Action.findById(this.activeActionRecord.action)
 
-    //   const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
-    //   this.actionRecords.stopTime = stoppingTime
+    await console.log('------------------------------------------>test', this.actionRecords)
+
+    const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+    console.log(this.activeActionRecord._id)
+    const activeActionRecord = await ActionRecord.findById(this.activeActionRecord._id)
+
+    this.activeActionRecord.stopTime = stoppingTime
+    await this.save()
 
     //   console.log(`${activeAction} has been stopped`)
     // this.activeAction = null
