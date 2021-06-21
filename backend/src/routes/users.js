@@ -23,6 +23,10 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/initialize', async (req, res) => {
+  await User.deleteMany({})
+  await Action.deleteMany({})
+  await ActionRecord.deleteMany({})
+
   const thuan = await User.create({ name: 'Thuan', age: 31, occupation: 'Mechanical Engineer', location: 'Germany' })
   const ozan = await User.create({ name: 'Ozan', age: 24, occupation: 'Electrical Engineer', location: 'Turkey' })
 
@@ -30,7 +34,7 @@ router.get('/initialize', async (req, res) => {
   const gymAction = await thuan.createAction('Exercising')
 
   await thuan.startAction(codingAction)
-  // thuan.stopAction(5)
+  await thuan.stopAction(5)
 
   // await thuan.startAction(gymAction)
 

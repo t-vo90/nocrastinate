@@ -36,6 +36,7 @@ class User {
     const action = await Action.create({ name: actionName })
     this.possibleActions.push(action)
     await this.save()
+    return action
   }
 
   async startAction(action) {
@@ -49,19 +50,23 @@ class User {
     await this.save()
   }
 
-  async stopAction() {
-    const activeAction = await this.activeActionRecord.action
-    await console.log('test', activeAction)
+  async stopAction(testTime) {
+    const activeAction = await Action.findById(this.activeActionRecord.action)
+    await console.log('Stopping', activeAction.name)
 
-    //   const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
-    //   this.actionRecords.stopTime = stoppingTime
+    const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+    console.log(stoppingTime)
+    console.log(this.activeActionRecord)
 
-    //   console.log(`${activeAction} has been stopped`)
-    // this.activeAction = null
-    // await this.save()
+    const activeActionRecord = await ActionRecord.find(this.activeActionRecord)
+    console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest', activeActionRecord)
+    this.activeActionRecord.stopTime = stoppingTime
+
+    this.activeAction = null
 
     // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
     // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
+    await this.save()
   }
 
   checkDailyReport() {}
