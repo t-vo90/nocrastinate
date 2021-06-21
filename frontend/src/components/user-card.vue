@@ -3,9 +3,9 @@ export default {
   name: 'UserCard',
   props: ['user'],
   data() {
-      return {
-          defaultBio: "No Bio"
-      }
+    return {
+      defaultBio: 'No Bio'
+    }
   }
 }
 </script>
@@ -15,9 +15,8 @@ export default {
     h1 {{ user.name }} is {{user.age}} and a {{user.occupation}}
     h2 Bio: {{user.bio || defaultBio}}
     h2 Actions
-//-
-    //- .photo(v-for="photo in user.photos")
-        //- h3{{ photo.filename}}
+    .actions(v-for="action in user.possibleActions")
+        //- h3{{ action.name}}
         //- p(v-if="!photo.likedBy.length")
             //- no likes yet!
         //- p(v-else)
@@ -26,6 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
+  font-size: 100%;
   padding: 2rem;
   border: 1px solid #333;
   border-radius: 0.3rem;
