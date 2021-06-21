@@ -54,13 +54,13 @@ class User {
 
   async stopAction(testTime) {
     const activeAction = await this.activeActionRecord
-    await console.log('test Active', activeAction.action)
 
     const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
+    await console.log(stoppingTime)
     this.actionRecords.stopTime = stoppingTime
 
-    console.log(`${activeAction} has been stopped`)
-    this.activeAction = null
+    await console.log(`${activeAction} has been stopped`)
+    // this.activeActionRecord = null
     await this.save()
 
     // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
