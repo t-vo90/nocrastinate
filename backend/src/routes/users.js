@@ -36,7 +36,8 @@ router.get('/initialize', async (req, res) => {
   await thuan.startAction(codingAction)
   await thuan.stopAction(5)
 
-  // await thuan.startAction(gymAction)
+  await thuan.startAction(gymAction)
+  await thuan.stopAction(2)
 
   console.log(thuan)
   res.sendStatus(200)

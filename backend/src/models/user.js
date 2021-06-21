@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const action = require('./action')
 const Action = require('./action')
 const ActionRecord = require('./actionrecord')
 
@@ -48,6 +49,7 @@ class User {
     const startingTime = new Date(Date.now())
     this.actionRecords.startTime = startingTime
     await this.save()
+    return record
   }
 
   async stopAction(testTime) {
@@ -62,9 +64,10 @@ class User {
     this.activeActionRecord.stopTime = stoppingTime
     await this.save()
 
-    //   console.log(`${activeAction} has been stopped`)
-    // this.activeAction = null
-    // await this.save()
+
+    await console.log(`${activeAction} has been stopped`)
+    // this.activeActionRecord = null
+    await this.save()
 
     // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
     // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
