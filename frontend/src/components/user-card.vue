@@ -3,9 +3,9 @@ export default {
   name: 'UserCard',
   props: ['user'],
   data() {
-      return {
-          defaultBio: "No Bio"
-      }
+    return {
+      defaultBio: 'No Bio'
+    }
   }
 }
 </script>
