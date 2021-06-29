@@ -2,6 +2,7 @@
 const express = require('express')
 
 const router = express.Router()
+const axios = require('axios')
 
 const User = require('../models/user')
 const Action = require('../models/action')
@@ -22,13 +23,39 @@ router.get('/', async (req, res, next) => {
   res.send(await User.find(query))
 })
 
+router.post('/', async (req, res) => {
+  const userToCreate = {
+    name: req.body.name,
+    age: req.body.age,
+  }
+
+  const createdUser = await User.create(userToCreate)
+  res.send(createdUser)
+})
+
 router.get('/initialize', async (req, res) => {
   await User.deleteMany({})
   await Action.deleteMany({})
   await ActionRecord.deleteMany({})
 
-  const thuan = await User.create({ name: 'Thuan', age: 31, occupation: 'Mechanical Engineer', location: 'Germany' })
-  const ozan = await User.create({ name: 'Ozan', age: 24, occupation: 'Electrical Engineer', location: 'Turkey' })
+  const thuan = new User({
+    name: 'Thuan',
+    age: 31,
+    occupation: 'Mechanical Engineer',
+    location: 'Germany',
+    email: 'thuan@coyotiv.com',
+  })
+  await thuan.setPassword('test')
+  await thuan.save()
+  const ozan = new User({
+    name: 'Ozan',
+    age: 24,
+    occupation: 'Electrical Engineer',
+    location: 'Turkey',
+    email: 'ozan@coyotiv.com',
+  })
+  await ozan.setPassword('test')
+  await ozan.save()
 
   const codingAction = await thuan.createAction('Coding')
   const gymAction = await thuan.createAction('Exercising')
@@ -42,18 +69,16 @@ router.get('/initialize', async (req, res) => {
   res.sendStatus(200)
 })
 
-router.get('/:name', async (req, res) => {
-  const user = await User.find({ name: req.params.name })
-  console.log('RIGHT USER', user)
-  if (user[0]) res.render('user', { user: user[0] })
+router.get('/:userId', async (req, res) => {
+  const user = await User.findById(req.params.userId)
+  console.log('wtf', user)
+  if (user) res.render('user', { user: user })
   else res.sendStatus(404)
 })
 
-router.get('/:userId', async (req, res) => {
+router.get('/:userId/json', async (req, res) => {
   const user = await User.findById(req.params.userId)
-  console.log(user)
-  if (user) res.render('user', { user })
-  else res.sendStatus(404)
+  res.send(user)
 })
 
 router.get('/resetdb', async (req, res) => {
