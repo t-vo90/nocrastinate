@@ -5,10 +5,9 @@
  * Module dependencies.
  */
 
-require('mongoose')
+const app = require('../src/app')
 const debug = require('debug')('nocrastinate:server')
 const http = require('http')
-const app = require('../src/app')
 
 /**
  * Get port from environment and store in Express.
