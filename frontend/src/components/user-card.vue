@@ -15,13 +15,6 @@ export default {
     h1 {{ user.name }} is {{user.age}} and a {{user.occupation}}
     h2 Bio: {{user.bio || defaultBio}}
     h2 Actions
-//-
-    //- .photo(v-for="photo in user.photos")
-        //- h3{{ photo.filename}}
-        //- p(v-if="!photo.likedBy.length")
-            //- no likes yet!
-        //- p(v-else)
-            //- p{{photo.likedBy.map(user => user.name).join(', ')}}
 </template>
 
 <style lang="scss" scoped>
