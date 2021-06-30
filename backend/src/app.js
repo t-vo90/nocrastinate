@@ -14,6 +14,7 @@ const User = require('./models/user')
 const AnimeQuote = require('./lib/quotes')
 
 const mongooseConnection = require('./database-connection')
+const socketService = require('./socket-service')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -29,6 +30,8 @@ if (app.get('env') == 'development') {
     .createServer({ extraExts: ['pug'] })
     .watch([`${__dirname}/public`, `${__dirname}/views`])
 }
+
+app.set('io', socketService)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -84,7 +87,7 @@ app.use(function (req, res, next) {
 
 // error handler
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
