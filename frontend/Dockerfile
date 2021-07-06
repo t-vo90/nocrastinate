@@ -21,4 +21,4 @@ RUN npm i -g serve
 
 COPY --from=BUILDER /app/dist ./
 
-CMD serve -l $PORT
+CMD serve -s -l $PORT
