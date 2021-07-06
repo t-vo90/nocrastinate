@@ -49,13 +49,13 @@ app.use(
     resave: false,
     store: MongoStore.create({
       mongoUrl: mongooseConnection._connectionString,
-      // mongoUrl: 'mongodb://mongo/nocrastinate',
-      // mongoUrl: process.env.MONGODB_CONNECTION_STRING,
       stringify: false,
     }),
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       path: '/api',
+      sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'strict',
+      secure: process.env.NODE_ENV == 'production',
     },
   })
 )
@@ -102,8 +102,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-const quote = AnimeQuote()
-console.log(quote)
+// console.log(quote)
 console.log('Creator what is my Purpose')
 
 module.exports = app

@@ -41,6 +41,7 @@
     "supertest": "^6.1.3"
   },
   "scripts": {
+    "start": "node bin/www",
     "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
     "test-coverage": "jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
     "lint": "lint-staged",
