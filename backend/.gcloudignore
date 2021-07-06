@@ -1,0 +1,8 @@
+node_modules
+.history
+.eslintrc.json
+.prettierrc
+.prettierignore
+test
+jest.config.js
+jest.setup.js
