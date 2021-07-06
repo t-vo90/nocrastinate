@@ -10,8 +10,9 @@ const logger = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
-const User = require('./models/user')
 const cors = require('cors')
+
+const User = require('./models/user')
 
 const mongooseConnection = require('./database-connection')
 const socketService = require('./socket-service')
@@ -110,7 +111,6 @@ app.use((err, req, res, next) => {
   })
 })
 
-// console.log(quote)
 console.log('Creator what is my Purpose')
 
 module.exports = app
