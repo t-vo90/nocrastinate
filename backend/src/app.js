@@ -11,7 +11,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const User = require('./models/user')
-const AnimeQuote = require('./lib/quotes')
+const cors = require('cors')
 
 const mongooseConnection = require('./database-connection')
 const socketService = require('./socket-service')
@@ -22,6 +22,11 @@ const accountRouter = require('./routes/account')
 
 const app = express()
 
+app.use(cors{
+  origin: true,
+  credentials: true
+})
+
 if (app.get('env') == 'development') {
   /* eslint-disable-next-line */
   app.use(require('connect-livereload')())
@@ -30,6 +35,7 @@ if (app.get('env') == 'development') {
     .createServer({ extraExts: ['pug'] })
     .watch([`${__dirname}/public`, `${__dirname}/views`])
 }
+app.set('trust proxy', 1)
 
 app.set('io', socketService)
 
