@@ -4,6 +4,7 @@ import Profile from '../views/profile.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
 import UserDetails from '../views/user-detail.vue'
+import Community from '../views/community.vue'
 Vue.use(VueRouter)
 
 export default function init(store) {
@@ -47,6 +48,15 @@ export default function init(store) {
         path: '/profile',
         name: 'profile',
         component: Profile,
+        beforeEnter(to, from, next) {
+          if (!store.state.user) return next('/login')
+          return next()
+        }
+      },
+      {
+        path: '/community',
+        name: 'community',
+        component: Community,
         beforeEnter(to, from, next) {
           if (!store.state.user) return next('/login')
           return next()
