@@ -1,6 +1,15 @@
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  methods: {
+    ...mapActions(['logout']),
+    async doLogout() {
+      await this.logout()
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 
@@ -12,13 +21,13 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.me-auto.mb-2.mb-lg-0
             li.nav-item
-                a.nav-link.active(aria-current='page' href='#') Dashboard
+                router-link.nav-link(to='#' ) Dashboard
             li.nav-item
-                a.nav-link(href='#') Profile
+                router-link.nav-link(to='/profile') Profile
             li.nav-item
-                a.nav-link(href='#') Friends
+                router-link.nav-link(to='#') Friends
             li.nav-item
-                a.nav-link(href='#') Community
+                router-link.nav-link(to='/community') Community
             li.nav-item.dropdown
                 a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
                  | Statistics
@@ -32,7 +41,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
                     li
                         a.dropdown-item(href='#') Community Statstics
                 li.nav-item
-                    a.nav-link.disabeld(href='#' tabindex='-1' aria-disabled='true') Disabled
+                    a.nav-link(@click="doLogout" href="#" tabindex='-1') Logout
             form.d-flex
                 input.form-control.me-2(type='search' placeholder='Search' aria-label='Search')
                 button.btn.btn-outline-sucess(type='Submit') Search
@@ -49,4 +58,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   border-radius: 0.3rem;
   background: #ccc;
 }
+// a.router-link-active {
+//   color: rgb(221, 29, 29);
+//   background-color: lightgray;
+// }
 </style>
