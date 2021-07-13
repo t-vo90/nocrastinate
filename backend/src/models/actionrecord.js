@@ -6,8 +6,8 @@ const ActionRecordSchema = new mongoose.Schema({
     ref: 'Action',
     autopopulate: true,
   },
-  startTime: { type: Date, default: Date.now },
-  stopTime: Date,
+  startTime: { type: Date },
+  stopTime: { type: Date },
   productiveTime: Number,
 })
 
