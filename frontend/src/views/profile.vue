@@ -32,12 +32,9 @@ export default {
 <template lang="pug">
   .home
     h1 NoCrastinate
-    h2 {{user.name}}
+    h2 Welcome {{user.name}}
 
     p The time is: {{ time }}
-    h2 Users
-    div(v-for="user in users")
-      router-link(:to="`/users/${user._id}`") {{ user.name }}
     div(v-if="liveStreams.length")
       h2 Live Streams
       div(v-for="stream in liveStreams")
