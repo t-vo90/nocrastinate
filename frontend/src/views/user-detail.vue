@@ -28,7 +28,6 @@ export default {
 
 <template lang="pug">
   .userdetail
-    NavBar
     h1 This is a user Detail
     UserCard(:user="user" v-if="user")
     Counter
