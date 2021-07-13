@@ -57,13 +57,11 @@ class User {
 
     const stoppingTime = new Date(Date.now() + testTime * 60 * 60 * 1000)
     console.log(stoppingTime)
-    console.log(this.activeActionRecord)
 
-    const activeActionRecord = await ActionRecord.find(this.activeActionRecord)
+    const activeActionRecord = await ActionRecord.findByIdAndUpdate(this.activeActionRecord, { stopTime: stoppingTime })
     console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest', activeActionRecord)
-    this.activeActionRecord.stopTime = stoppingTime
 
-    this.activeAction = null
+    // this.activeAction = null
 
     // const productiveTime = this.actionRecords.calculateProductiveTimeOfOneAction()
     // console.log(`You have been ${activeAction} for ${productiveTime} hour/s`)
