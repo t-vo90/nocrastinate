@@ -69,20 +69,6 @@ class User {
   }
 
   checkDailyReport() {}
-
-  get profile() {
-    return `
-    _____________________________________________
-    # Name: ${this.name} Age: ${this.age}
-    _____________________________________________
-    # Bio: ${this.bio}
-    _____________________________________________
-    # Top 5 Actions
-    _____________________________________________
-    `
-    /* ${this.action.map((actions) =>
-      return this.action.name)} */
-  }
 }
 
 userSchema.loadClass(User)
