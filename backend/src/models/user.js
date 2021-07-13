@@ -47,7 +47,7 @@ class User {
 
     console.log(`${record.action.name} has been started`)
     const startingTime = new Date(Date.now())
-    this.actionRecords.startTime = startingTime
+    await record.update({ startTime: startingTime })
     await this.save()
   }
 
